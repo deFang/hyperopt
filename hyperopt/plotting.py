@@ -86,6 +86,7 @@ def main_plot_vars(trials, do_show=True, fontsize=10,
                    ):
     # -- import here because file-level import is too early
     import matplotlib.pyplot as plt
+    plt.figure(figsize=(10, 10))
 
     idxs, vals = miscs_to_idxs_vals(trials.miscs)
     losses = trials.losses()
