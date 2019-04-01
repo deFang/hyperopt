@@ -82,11 +82,11 @@ def main_plot_histogram(trials, do_show=True, title="Loss Histogram"):
 
 def main_plot_vars(trials, do_show=True, fontsize=10,
                    colorize_best=None,
-                   columns=5, arrange_by_loss=False
+                   columns=5, arrange_by_loss=False, size=10
                    ):
     # -- import here because file-level import is too early
     import matplotlib.pyplot as plt
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(size, size))
 
     idxs, vals = miscs_to_idxs_vals(trials.miscs)
     losses = trials.losses()
