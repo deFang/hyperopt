@@ -34,10 +34,12 @@ default_status_colors = {
     base.STATUS_FAIL: 'r'}
 
 
-def main_plot_history(trials, do_show=True, status_colors=None, title="Loss History"):
+def main_plot_history(trials, do_show=True, status_colors=None, title="Loss History",
+                      size=10, bottom=None, top=None
+                      ):
     # -- import here because file-level import is too early
     import matplotlib.pyplot as plt
-
+    plt.figure(figsize=(size, size))
     # self is an Experiment
     if status_colors is None:
         status_colors = default_status_colors
@@ -46,9 +48,12 @@ def main_plot_history(trials, do_show=True, status_colors=None, title="Loss Hist
     Ys, colors = zip(*[(y, status_colors[s])
                        for y, s in zip(trials.losses(), trials.statuses())
                        if y is not None])
+    bottom = min(Ys) if bottom is None else bottom
+    top = max(Ys) if top is None else top
     plt.scatter(range(len(Ys)), Ys, c=colors)
     plt.xlabel('time')
     plt.ylabel('loss')
+    plt.ylim(bottom, top)
 
     best_err = trials.average_best_error()
     print("avg best error:", best_err)
