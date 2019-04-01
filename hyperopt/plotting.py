@@ -82,7 +82,8 @@ def main_plot_histogram(trials, do_show=True, title="Loss Histogram"):
 
 def main_plot_vars(trials, do_show=True, fontsize=10,
                    colorize_best=None,
-                   columns=5, arrange_by_loss=False, size=10
+                   columns=5, arrange_by_loss=False, 
+                   size=10, alpha=0.5
                    ):
     # -- import here because file-level import is too early
     import matplotlib.pyplot as plt
@@ -155,7 +156,7 @@ def main_plot_vars(trials, do_show=True, fontsize=10,
         plt.title(titles[varnum], fontsize=fontsize)
         c = list(map(color_fn_bw, [loss_by_tid[ii] for ii in idxs[label]]))
         if len(y):
-            plt.scatter(x, y, c=c)
+            plt.scatter(x, y, c=c, alpha=alpha)
         if 'log' in dist_name:
             nums, texts = plt.yticks()
             plt.yticks(nums, ['%.2e' % np.exp(t) for t in nums])
